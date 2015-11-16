@@ -20,11 +20,66 @@ const Left = React.createClass({
 	},
 
 
+	getInitialState: function(){
+		return {
+			scrollPos: 0
+		}
+	},
+
+
+	componentDidMount: function(){
+
+		let self = this;
+
+		let frame = document.getElementById('frame');
+
+		console.log(frame);
+		
+		frame.addEventListener('scroll', self._checkScroll, false);
+
+	},
+
+	_checkScroll: function(){
+
+		let frame = document.getElementById('frame');
+		let scrollPos = frame.scrollTop || frame.pageYOffset || 0;
+
+		this.setState({
+			scrollPos: scrollPos
+		});
+
+	},
+
+
+
+
+
+	// shouldComponentUpdate: function(nextProps){
+
+
+	// 	if (this.props.entries.length > 0){
+	// 		if (nextProps.entries[0].slug !== this.props.entries[0].slug){
+	// 			return true;
+	// 		}
+	// 		else{
+	// 			return false;
+	// 		}
+	// 	}
+
+	// 	else{
+	// 		return true;
+	// 	}
+		
+	// },
+
+
+
+
 	render: function(){
 
 		let sortedArray = _.sortByOrder(this.props.entries, ['id'], ['asc']);
 
-
+		let self = this
 
 		return (
 			<div className="column left">
@@ -37,6 +92,7 @@ const Left = React.createClass({
 								<LeftItem
 									key={index}
 									item={item}
+									scrollPos={self.state.scrollPos}
 								/>
 
 							);

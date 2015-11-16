@@ -20,11 +20,30 @@ const Right = React.createClass({
 	},
 
 
+	shouldComponentUpdate: function(nextProps){
+
+
+		if (this.props.entries.length > 0){
+			if (nextProps.entries[0].slug !== this.props.entries[0].slug){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+
+		else{
+			return true;
+		}
+		
+
+	},
+
+
 	render: function(){
 
+		
 		let sortedArray = _.sortByOrder(this.props.entries, ['id'], ['desc']);
-
-
 
 		return (
 			<div className="column right">

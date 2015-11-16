@@ -14,8 +14,6 @@ require('velocity-animate');
 module.exports = function(){
 
 
-
-
 	const innerR = $('.column--inner-r');
 	const frame = document.getElementById('frame');
 
@@ -23,7 +21,9 @@ module.exports = function(){
 	// ------------------------------------------------
 	// Get scrolltop of left column
 	//
-	let scrollPos = frame.scrollTop || frame.pageYOffset || 0;
+
+	
+	let scrollPos = frame.scrollTop || frame.pageYOffset;
 
 
 
@@ -34,5 +34,22 @@ module.exports = function(){
 	innerR.css({
 		'transform': 'translate3d(0, ' + scrollPos * 2 + 'px, 0)'
 	});
+
+
+	// ------------------------------------------------
+	// Check for slugs to update hash
+	//
+	// $('.item-l').each(function(){
+
+	// 	// -------------------------------------------------
+	// 	//
+	// 	// THIS IS THE PROBLEM!!! MKAING A NEW REQUEST EACH SCROLL
+	// 	// 
+	// 	// -------------------------------------------------
+		
+	// 	if ($(this).offset().top < window.pageYOffset + 10 && $(this).offset().top + $(this).height() > window.pageYOffset + 10){
+	// 		history.replaceState(null, null, '#' + $(this).attr('id'))
+	// 	}
+	// });
 
 };

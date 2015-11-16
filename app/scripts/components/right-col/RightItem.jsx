@@ -11,9 +11,27 @@ const RightItem = React.createClass({
 	},
 
 
+	// ------------------------------------------------
+	// Only update if we have new item info
+	//
+	
+	shouldComponentUpdate: function(nextProps){
+
+		if (nextProps.item.slug !== this.props.item.slug){
+			return true;
+		}
+
+		else{
+			return false;
+		}
+
+	},
+
+
+
+
 	render: function(){
 
-		console.log(this.props.item);
 		return (
 			<div className="item">
 				<h1>{this.props.item.recordArtist}</h1>

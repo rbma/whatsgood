@@ -10,6 +10,7 @@
 const React = require('react');
 const q = require('q');
 const $ = require('jquery');
+require('velocity-animate');
 
 
 // ------------------------------------------------
@@ -18,6 +19,7 @@ const $ = require('jquery');
 
 const Request = require('./utils/request');
 const Scroll = require('./utils/scroll');
+const Reset = require('./utils/reset-cols');
 
 
 // ------------------------------------------------
@@ -34,14 +36,30 @@ const App = React.createClass({
 	getInitialState: function(){
 		return {
 			//main data
-			entries: []
+			entries: [],
+			//hash
+			route: window.location.hash.substr(1),
+
+			//initial route set
+			initialRouteSet: false
 		}
 	},
 
 
+
+
+
+	// ------------------------------------------------
+	// Mount
+	//
 	componentDidMount: function(){
 
 		let self = this;
+		
+
+		//bind hashchange
+		window.addEventListener('hashchange', self._onHashChange);
+
 
 		//fetch data with AJAX
 		Request.index().then(function(response){
@@ -49,101 +67,112 @@ const App = React.createClass({
 			self.setState({
 				entries: response
 			});
-
-			//kick off
-			self._init();
-
 		});
 
 	},
 
 
+
+
+
+
+	// ------------------------------------------------
+	// Update
+	//
 	componentDidUpdate: function(oldProps, oldState){
 
 		//if new data comes in (ie. hasn't loaded on componentDidMount)
 		//measure and set columns
 		if (oldState.entries !== this.state.entries){
-			this._resetColumns();
+			this._init();
 		}
 
 	},
 
 
-	//set scroll listener
+
+
+
+	// ------------------------------------------------
+	// Call initial reset
+	//
+	
 	_init: function(){
-		let self = this;
 
 		//measure and set columns
-		this._resetColumns();
+		Reset();
 
+		if (!this.state.initialRouteSet){
+			//check for initial route
+			this._handleInitialRoute();
+		}
 		
-
 	},
 
 
 
 	// ------------------------------------------------
-	// Set column heights
+	// Scroll to initial item if hash passed in
 	//
-	
-	_resetColumns: function(){
+	_handleInitialRoute: function(){
+
+		console.log('INITIAL ROUTE CALLED');
 
 		let self = this;
-
-		//set left and right
-		let right = $('.column--content-r');
-		let left = $('.column--content-l');
-		let innerR = $('.column--inner-r');
-		let frame = $('.container--scroll');
-
-		//get inner scroll height of left and right
-		let lDom = document.getElementById('colLeft');
-		let rDom = document.getElementById('colRight');
-		let lHeight = lDom.scrollHeight;
-		let rHeight = rDom.scrollHeight;
+		let route = this.state.route;
+		let frame = $('#frame');
 
 
-		//find which one is bigger and set to equal heights
+		$('.item-l').each(function(){
 
-		if (lHeight > rHeight){
-			lDom.style.height = lHeight + 'px';
-			rDom.style.height = lHeight + 'px';
-			frame.css({
-				height: window.innerHeight + 'px'
-			});
+			if (self.state.route === $(this).attr('id')){
 
-		}
+				let offsetPos = $(this).offset().top;
 
-		else{
-			rDom.style.height = rHeight + 'px';
-			lDom.style.height = rHeight + 'px';
-			frame.css({
-				height: window.innerHeight + 'px'
-			});
-		}
+				frame.scrollTop(offsetPos);
 
-		let offset = left.innerHeight() - window.innerHeight;
-		
-		//invert right column
-		innerR.css('top', '-' + offset + 'px');
-
-		//window.addEventListener('scroll', self._handleScroll, false);
-
-
-		frame.bind('scroll', function(){
-			self._handleScroll();
+				return;
+			}
 		});
 
+		this.setState({
+			initialRouteSet: true
+		});
+
+		
+
+	},
+	
+
+
+
+
+	// ------------------------------------------------
+	// Watch for hash change
+	//
+	_onHashChange: function(){
+
+		console.log('hashchange');
+
+		this.setState({
+			route: window.location.hash.substr(1)
+		});
+
+
 	},
 
+	
 
-	_handleScroll: function(){
-		Scroll();
-	},
 
+	// -------------------------------------------------
+	//
+	// Render
+	// 
+	// -------------------------------------------------
+	
 	render: function(){
 		return (
-			<section className="container--scroll" ref="frame" id="frame">
+			<section className="container--scroll" ref="frame" id="frame" onScroll={Scroll}>
 				<Left
 					entries={this.state.entries}
 				/>
