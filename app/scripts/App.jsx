@@ -11,7 +11,13 @@ const React = require('react');
 const q = require('q');
 const $ = require('jquery');
 
-const Request = require('./request');
+
+// ------------------------------------------------
+// Utils
+//
+
+const Request = require('./utils/request');
+const Scroll = require('./utils/scroll');
 
 
 // ------------------------------------------------
@@ -132,45 +138,12 @@ const App = React.createClass({
 
 
 	_handleScroll: function(){
-
-		let left = $('.column.left');
-		let right = $('.column--content-r');
-		let innerR = $('.column--inner-r');
-		let frame = $('.container--scroll');
-
-		//get inner scroll height of left and right
-		let lDom = document.getElementById('colLeft');
-		let rDom = document.getElementById('colRight');
-		let lHeight = lDom.scrollHeight;
-		let rHeight = rDom.scrollHeight;
-
-
-
-		// ------------------------------------------------
-		// Get scrolltop of left column
-		//
-		let scrollPos = frame.scrollTop();
-
-
-
-		// ------------------------------------------------
-		// Reverse it for right
-		// multiplying by 2 to account for negative top position
-
-
-		innerR.css({
-			'transform': 'translate3d(0, ' + (scrollPos * 2) + 'px, 0)'
-		});
-		
-
-		
-
-
+		Scroll();
 	},
 
 	render: function(){
 		return (
-			<section className="container--scroll">
+			<section className="container--scroll" ref="frame" id="frame">
 				<Left
 					entries={this.state.entries}
 				/>
