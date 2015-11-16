@@ -11,12 +11,14 @@ const React = require('react');
 const q = require('q');
 const $ = require('jquery');
 
+const Request = require('./request');
+
 
 // ------------------------------------------------
 // Components
 //
-const Left = require('./components/Left.jsx');
-const Right = require('./components/Right.jsx');
+const Left = require('./components/left-col/Left.jsx');
+const Right = require('./components/right-col/Right.jsx');
 
 
 
@@ -25,6 +27,7 @@ const App = React.createClass({
 
 	getInitialState: function(){
 		return {
+			//main data
 			entries: []
 		}
 	},
@@ -34,12 +37,14 @@ const App = React.createClass({
 
 		let self = this;
 
-		this._getData().then(function(response){
+		//fetch data with AJAX
+		Request.index().then(function(response){
 			
 			self.setState({
 				entries: response
 			});
 
+			//kick off
 			self._init();
 
 		});
@@ -47,45 +52,29 @@ const App = React.createClass({
 	},
 
 
+	componentDidUpdate: function(oldProps, oldState){
+
+		//if new data comes in (ie. hasn't loaded on componentDidMount)
+		//measure and set columns
+		if (oldState.entries !== this.state.entries){
+			this._resetColumns();
+		}
+
+	},
+
+
+	//set scroll listener
 	_init: function(){
 		let self = this;
 
+		//measure and set columns
 		this._resetColumns();
 
-		$('.container--scroll').bind('scroll', function(event){
-			self._handleScroll();
-		});
+		
 
 	},
 
 
-
-	// ------------------------------------------------
-	// Fetch data
-	//
-
-	_getData: function(){
-
-		let deferred = q.defer();
-
-		$.ajax({
-			url: 'data.json',
-			type: 'GET',
-			success: function(data){
-				deferred.resolve(data);
-
-			},
-			error: function(res, status, err){
-				console.log('DATA ERROR', status, err);
-				deferred.reject(err);
-			}
-
-		});
-
-		return deferred.promise;
-
-	},
-	
 
 	// ------------------------------------------------
 	// Set column heights
@@ -93,57 +82,88 @@ const App = React.createClass({
 	
 	_resetColumns: function(){
 
-		let right = $('.column.right');
-		let left = $('.column.left');
+		let self = this;
 
+		//set left and right
+		let right = $('.column--content-r');
+		let left = $('.column--content-l');
+		let innerR = $('.column--inner-r');
+		let frame = $('.container--scroll');
+
+		//get inner scroll height of left and right
 		let lDom = document.getElementById('colLeft');
 		let rDom = document.getElementById('colRight');
 		let lHeight = lDom.scrollHeight;
 		let rHeight = rDom.scrollHeight;
 
 
-		//find which one is bigger
+		//find which one is bigger and set to equal heights
 
 		if (lHeight > rHeight){
 			lDom.style.height = lHeight + 'px';
 			rDom.style.height = lHeight + 'px';
+			frame.css({
+				height: window.innerHeight + 'px'
+			});
+
 		}
 
 		else{
 			rDom.style.height = rHeight + 'px';
 			lDom.style.height = rHeight + 'px';
+			frame.css({
+				height: window.innerHeight + 'px'
+			});
 		}
 
 		let offset = left.innerHeight() - window.innerHeight;
 		
+		//invert right column
+		innerR.css('top', '-' + offset + 'px');
 
-		right.css('top', '-' + offset + 'px');
+		//window.addEventListener('scroll', self._handleScroll, false);
+
+
+		frame.bind('scroll', function(){
+			self._handleScroll();
+		});
 
 	},
+
 
 	_handleScroll: function(){
 
 		let left = $('.column.left');
-		let right = $('.column.right');
+		let right = $('.column--content-r');
+		let innerR = $('.column--inner-r');
+		let frame = $('.container--scroll');
+
+		//get inner scroll height of left and right
+		let lDom = document.getElementById('colLeft');
+		let rDom = document.getElementById('colRight');
+		let lHeight = lDom.scrollHeight;
+		let rHeight = rDom.scrollHeight;
+
 
 
 		// ------------------------------------------------
 		// Get scrolltop of left column
 		//
-		let scrollPos = left.offset().top;
+		let scrollPos = frame.scrollTop();
 
-		console.log(scrollPos);
-		
+
 
 		// ------------------------------------------------
 		// Reverse it for right
-		//
+		// multiplying by 2 to account for negative top position
 
 
-		//multiplying by 2 to account for negative top position
-		right.css({
-			'transform': 'translate3d(0, ' + (-scrollPos * 2) + 'px, 0)'
+		innerR.css({
+			'transform': 'translate3d(0, ' + (scrollPos * 2) + 'px, 0)'
 		});
+		
+
+		
 
 
 	},
@@ -151,8 +171,12 @@ const App = React.createClass({
 	render: function(){
 		return (
 			<section className="container--scroll">
-				<Left/>
-				<Right/>
+				<Left
+					entries={this.state.entries}
+				/>
+				<Right
+					entries={this.state.entries}
+				/>
 			</section>
 		);
 	}

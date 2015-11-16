@@ -1,6 +1,6 @@
 [
 	{
-		"_id": "55c08e69f556d303000b2c84",
+		"id": 1,
 		"title": "Bienoise / Stargate",
 		"slug": "bienoise-stargate",
 		"recommender": "Bienoise",
@@ -18,7 +18,7 @@
 		"publish": true
 	},
 	{
-		"_id": "55c0909ff556d303000b2c85",
+		"id": 2,
 		"videoUrl": "G1USCVRh1Ck",
 		"title": "Tollcrane / Slowdive",
 		"slug": "tollcrane-slowdive",
@@ -35,7 +35,7 @@
 		"publish": true
 	},
 	{
-		"_id": "55c091edf556d303000b2c86",
+		"id": 3,
 		"title": "Kate NV / Chakra",
 		"videoUrl": "Xkch0JiBtCE",
 		"text": "<p>Ask Kate Shilonosova to describe her music and the Moscow-based songstress will cop to a hearty ’80s J-pop influence infused with the verve of the early ’90s rave movement and the swagger of the new jack swing scene. It’s a buoyant triple threat template that Shilonosova mashes together with a peppy energy and bright aural glow when she transforms into the artist NV; her 2013-released EP charms by virtue of kittenish trilling and a bubbly production hue. When not pursuing solo endeavors, Shilonosova is also part of a scratch orchestra whose renditions are hooked around the musings of English experimentalist Cornelius Cardew.<br/></p>",
@@ -54,7 +54,7 @@
 	},
 
 	{
-		"_id": "55c0939ef556d303000b2c88",
+		"id": 4,
 		"title": "Uio Loi / Miffy",
 		"recordTitle": "げんきげんき！キッズソング",
 		"recordArtist": "Miffy",
@@ -70,7 +70,7 @@
 		"publish": true
 	},
 	{
-		"_id": "55c09497f556d303000b2c89",
+		"id": 5,
 		"title": "Bosaina / Les Baxter",
 		"slug": "bosaina-les-baxter",
 		"recommender": "Bosaina",
