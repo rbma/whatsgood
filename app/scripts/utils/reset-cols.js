@@ -11,6 +11,8 @@ const $ = require('jquery');
 
 module.exports = function(){
 
+	console.log('RESET CALLED');
+
 	//set left and right
 	let left = $('.column--content-l');
 	let innerR = $('.column--inner-r');

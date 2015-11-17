@@ -9,6 +9,7 @@
 @import "base/mixins";
 @import "base/typo";
 @import "base/base";
+@import "base/animations";
 
 
 // -------------------------------------------------
@@ -16,5 +17,6 @@
 // Modules Imports
 // 
 // -------------------------------------------------
+@import "modules/nav";
 @import "modules/base";
 @import "modules/detail";

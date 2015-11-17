@@ -3,6 +3,8 @@
 window.jQuery = window.$ = require('jquery');
 require('velocity-animate');
 
+const Reset = require('./reset-cols');
+
 
 
 
@@ -23,7 +25,8 @@ module.exports = function(){
 	//
 
 	
-	let scrollPos = frame.scrollTop || frame.pageYOffset;
+	let scrollPos = frame.scrollTop || frame.pageYOffset || 0;
+
 
 
 

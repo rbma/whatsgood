@@ -51,17 +51,22 @@ const App = React.createClass({
 	componentDidMount: function(){
 
 		let self = this;
-	
 
+		if (this.state.entries.length > 0){
 
-		//fetch data with AJAX
-		Request.index().then(function(response){
-			
-			self.setState({
-				entries: response
+			this._init();
+		}
+
+		else{
+			//fetch data with AJAX
+			Request.index().then(function(response){
+				
+				self.setState({
+					entries: response
+				});
 			});
-		});
 
+		}
 	},
 
 
@@ -79,6 +84,15 @@ const App = React.createClass({
 		if (oldState.entries !== this.state.entries){
 			this._init();
 		}
+
+		// ------------------------------------------------
+		// If route has changed, resize
+		//
+		
+		if (this.props.location.pathname === '/'){
+			this._init();
+		}
+
 
 	},
 
