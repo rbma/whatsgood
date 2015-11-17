@@ -4,6 +4,24 @@
 // 
 // -------------------------------------------------
 
+
+.equal-overlay{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	pointer-events: none;
+	color: white;
+	@include display(flex);
+	@include align-items(center);
+	@include justify-content(center);
+	h1{
+		font-size: 10em;
+	}
+}
+
 .container--scroll{
 	position: absolute;
 	top: 0;
@@ -12,63 +30,85 @@
 	min-height: 100%;
 	overflow: hidden;
 	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 	background: $black;
-	.column{
-		width: 50%;
-		overflow: hidden;
-		min-height: 100%;
+}
+
+%column{
+	width: 50%;
+	overflow: hidden;
+	min-height: 100%;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	.column--inner{
+		@include backface-visibility(hidden);
 		position: relative;
+	}
+	&:after{
+		content: '';
+		clear: both;
+		width: 100%;
+		height: 0;
+		display: block;
+	}
+
+	.item{
+		position: relative;
+		width: 100%;
+		height: 100vh;
+		@include display(flex);
+		@include flex-direction(column);
+		@include align-items(center);
+		@include justify-content(center);
 		margin: 0;
-		padding: 0;
-		@include perspective(100px);
-
-		.column--inner{
-			@include backface-visibility(hidden);
-			position: relative;
-		}
-		
-		&.left{
-			float: left;
-			background: $black;
-			color: $white;
-			@include transform(rotateY(10deg));
-			@include uppercase();
-			h1{
-				text-shadow: 1px 1px 5px black;
+		font-size: 3em;
+		color: white;
+		.item--image-container{
+			width: 300px;
+			height: 300px;
+			overflow: hidden;
+			img.item--image{
+				height: 100%;
+				width: auto;
+				opacity: 0;
+				@include transition(opacity 0.4s linear);
+				&.image-loaded{
+					opacity: 1;
+				}
 			}
-			&:after{
-				content: '';
-				clear: both;
-				width: 100%;
-				height: 0;
-				display: block;
-			}
-		}
-		&.right{
-			float: right;
-			background: $black;
-			font-style: italic;
-			&:after{
-				content: '';
-				clear: both;
-				width: 100%;
-				height: 0;
-				display: block;
-			}
-		}
-
-
-		.item{
-			position: relative;
-			width: 100%;
-			height: 100vh;
-			@include display(flex);
-			@include flex-direction(column);
-			@include align-items(center);
-			@include justify-content(center);
-			margin: 0;
-			font-size: 3em;
-			color: white;
 		}
 	}
 }
+
+.left{
+	@extend %column;
+	float: left;
+	background: $black;
+	color: $white;
+	@include transform(rotateY(10deg));
+	@include uppercase();
+	h1{
+
+		//@include transform(rotate3d(190,-170,130,300deg));
+	}
+	.item--image-container{
+		@include transform(rotate3d(190,-170,130,700deg));
+	}
+}
+
+
+.right{
+	@extend %column;
+	float: right;
+	@include uppercase();
+	h1{
+
+		//@include transform(rotate3d(190,-170,130,-300deg));
+	}
+	.item--image-container{
+		@include transform(rotate3d(190,-170,130,-700deg));
+	}
+
+}
+

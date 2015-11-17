@@ -1,6 +1,21 @@
 [
 	{
 		"id": 1,
+		"slug": "katenv",
+		"recommender": "Kate NV",
+		"recommenderLink": "http://www.soundcloud.com/kate-nv",
+		"recommenderVideoId": "Xkch0JiBtCE",
+		"recommenderImage": "http://payload407.cargocollective.com/1/4/150744/10442845/AFISHA-KATE-NV_001_1000.jpg",
+		"recommenderText": "<p>Ask Kate Shilonosova to describe her music and the Moscow-based songstress will cop to a hearty ’80s J-pop influence infused with the verve of the early ’90s rave movement and the swagger of the new jack swing scene. It’s a buoyant triple threat template that Shilonosova mashes together with a peppy energy and bright aural glow when she transforms into the artist NV; her 2013-released <i>Pink Jungle</i>EP charms by virtue of kittenish trilling and a bubbly production hue. When not pursuing solo endeavors, Shilonosova is also part of a scratch orchestra whose renditions are hooked around the musings of English experimentalist Cornelius Cardew.<br/></p>",
+		"recordTitle": "さてこそ",
+		"recordArtist": "Chakra",
+		"recordImageUrl": "https://s3.amazonaws.com/what-record-assets/images%2F61Hh-4D-v2L.jpg",
+		"recordLabel": "Victor",
+		"recordYear": "2012",
+		"recordVideoId": "qSAuxFpsOII"
+	},
+	{
+		"id": 3,
 		"slug": "bienoise",
 		"recommender": "Bienoise",
 		"recommenderLink": "https://soundcloud.com/bienoise",
@@ -10,27 +25,38 @@
 		"recordTitle": "Hexplore Superfluidity",
 		"recordArtist": "Stargate",
 		"recordImageUrl": "https://s3.amazonaws.com/what-record-assets/images%2F333.jpg",
-		"recordImageKey": "images/333.jpg",
 		"recordLabel": "Hundebiss",
 		"recordYear": "2012",
-		"recordVideoId": "qSAuxFpsOII",
-		"publish": true
+		"recordVideoId": "qSAuxFpsOII"
 	},
 	{
 		"id": 2,
 		"slug": "tollcrane",
 		"recommender": "Tollcrane",
-		"recommenderLink": "https://soundcloud.com/bienoise",
-		"recommenderVideoId": "cN0X_HikFvk",
+		"recommenderLink": "https://soundcloud.com/tollcrane",
+		"recommenderVideoId": "G1USCVRh1Ck",
 		"recommenderImage": "https://assets.rbmaradio.com/media/W1siZiIsIjIwMTQvMTEvMDMvMTAvMDEvNTkvMjM3L1RvbGxfY3JhbmVfc2luZXdhdmUuanBlZyJdLFsicCIsInRodW1iIiwiNjg1eDQ1MSMiXSxbInAiLCJjb252ZXJ0IiwiLXN0cmlwIC1pbnRlcmxhY2UgUGxhbmUiXV0/21aa3ce6d0efdd76/Toll_crane_sinewave.jpeg",
-		"recommenderText": "<p>It’s telling that Italy’s Alberto Ricca, who records as Bienoise, runs a free jazz label called Floating Forest. His music, while not technically “free jazz” (or even regular jazz actually), has that same sense of busyness that eventually coheres into a pulsing, living whole. Crucially, Ricca, who spends a lot of time thinking about the relationship between music and a good story, never loses sight of structure in his own music. His pieces are bustling, but they move and shift – showing a real understanding of tension and release.<br/></p>",
-		"recordTitle": "Hexplore Superfluidity",
-		"recordArtist": "Stargate",
-		"recordImageUrl": "https://s3.amazonaws.com/what-record-assets/images%2F333.jpg",
-		"recordImageKey": "images/333.jpg",
-		"recordLabel": "Hundebiss",
-		"recordYear": "2012",
-		"recordVideoId": "qSAuxFpsOII",
-		"publish": true
+		"recommenderText": "<p>Constraints often facilitate the creation of great art; just ask Matthew Herbert (or Georges Perec). So perhaps it’s no wonder that Tollcrane’s has flourished, despite less-than-hospitable circumstances. To wit: The Karachi native (AKA Talha Asim Wynne) lost a key resource when the Pakistani authorities banned YouTube, the source of his music-production tutorials. But that hasn’t held him back in his quest to craft his own unique style of electronic music, one that’s both deeply intuitive and, often, deliciously wrong. Early on, he played psych rock in //orangenoise, and a similar quest for the outer limits informs Tollcrane’s solo work, which draws a wavy line through Moodymann, Sun Electric, Actress, Patten, and other margin-walking dance music producers.<br/></p>",
+		"recordTitle": "Pygmalion",
+		"recordArtist": "Slowdive",
+		"recordImageUrl": "https://s3.amazonaws.com/what-record-assets/images%2F8718469531424_1.jpg",
+		"recordLabel": "Creation",
+		"recordYear": "1995",
+		"recordVideoId": "UyU2XrDjO1M"
+	},
+	{
+		"id": 4,
+		"slug": "bosaina",
+		"recommender": "Bosaina",
+		"recommenderLink": "http://www.soundcloud.com/bosaina",
+		"recommenderVideoId": "CAoDzRfKScY",
+		"recommenderImage": "https://i1.sndcdn.com/avatars-000116139456-7nc5pt-t500x500.jpg",
+		"recommenderText": "<p>Bosaina is a well-travelled soul, so it’s fitting that her inspiration for making music came from a subway train in a foreign land. Bosaina stopped briefly in New York on her way back to Egypt when she heard the looped click-clacking of metal on metal in the city’s Broadway district, and decided to remain in the Big Apple to learn Ableton and make corrugated, hand-finished jazz. The Egyptian-born artist, who also lived in London for several years, sculpts her ambient pieces from soft and hard materials: her shimmering notes and dew-eyed melodies are bathed in the echoes of the city – noisy traffic jams, pungent delis, rain-drenched sidewalks and, of course, those shuttling trains. Shot through a deeply singular jazz strain, Bosaina’s music has a fibrous, textural quality to it that feels as if it draws from Actress as much as it does from Miles Davis. <br/></p>",
+		"recordTitle": "La Femme feat. Franck Pourcel And His French Strings",
+		"recordArtist": "Les Baxter",
+		"recordImageUrl": "https://s3.amazonaws.com/what-record-assets/images%2FLes+Baxter+%26+Franck+Pourcel+-+La+Femme+f.jpg",
+		"recordLabel": "Capitol",
+		"recordYear": "1956",
+		"recordVideoId": "hhu6qf12p_c"
 	}
 ]

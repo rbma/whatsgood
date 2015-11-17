@@ -3,6 +3,7 @@
 const React = require('react');
 const $ = require('jquery');
 const _ = require('lodash');
+const Link = require('react-router').Link;
 
 
 // ------------------------------------------------
@@ -45,22 +46,31 @@ const Right = React.createClass({
 		
 		let sortedArray = _.sortByOrder(this.props.entries, ['id'], ['desc']);
 
+		let link = '';
+
+		if (this.props.entries[0]){
+			link = '/detail/' + this.props.entries[0].id + '/' + this.props.entries[0].slug;
+		}
+		
+
 		return (
-			<div className="column right">
-				<div className="column--inner-r column--inner">
-					<div className="column--content-r" id="colRight">
-						{sortedArray.map(function(item, index){
-							return (
-								<RightItem
-									key={index}
-									item={item}
-								/>
-							);
-						})
-					}
+			<Link to={link}>
+				<div className="column right">
+					<div className="column--inner-r column--inner">
+						<div className="column--content-r" id="colRight">
+							{sortedArray.map(function(item, index){
+								return (
+									<RightItem
+										key={index}
+										item={item}
+									/>
+								);
+							})
+						}
+						</div>
 					</div>
 				</div>
-			</div>
+			</Link>
 		);
 	}
 

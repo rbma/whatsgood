@@ -55,11 +55,14 @@
   },
   "dependencies": {
     "cash-dom": "^1.0.0",
+    "classnames": "^2.2.0",
+    "history": "^1.13.1",
     "jquery": "^2.1.4",
     "lodash": "^3.10.1",
     "q": "^1.4.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
-    "react-inview": "0.0.4"
+    "react-inview": "0.0.4",
+    "react-router": "^1.0.0"
   }
 }

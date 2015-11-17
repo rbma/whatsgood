@@ -9,8 +9,8 @@
 
 const React = require('react');
 const q = require('q');
-const $ = require('jquery');
-require('velocity-animate');
+
+
 
 
 // ------------------------------------------------
@@ -22,13 +22,11 @@ const Scroll = require('./utils/scroll');
 const Reset = require('./utils/reset-cols');
 
 
+
+
 // ------------------------------------------------
-// Components
+// App
 //
-const Left = require('./components/left-col/Left.jsx');
-const Right = require('./components/right-col/Right.jsx');
-
-
 
 const App = React.createClass({
 
@@ -37,8 +35,6 @@ const App = React.createClass({
 		return {
 			//main data
 			entries: [],
-			//hash
-			route: window.location.hash.substr(1),
 
 			//initial route set
 			initialRouteSet: false
@@ -55,10 +51,7 @@ const App = React.createClass({
 	componentDidMount: function(){
 
 		let self = this;
-		
-
-		//bind hashchange
-		window.addEventListener('hashchange', self._onHashChange);
+	
 
 
 		//fetch data with AJAX
@@ -101,67 +94,9 @@ const App = React.createClass({
 
 		//measure and set columns
 		Reset();
-
-		if (!this.state.initialRouteSet){
-			//check for initial route
-			this._handleInitialRoute();
-		}
 		
 	},
 
-
-
-	// ------------------------------------------------
-	// Scroll to initial item if hash passed in
-	//
-	_handleInitialRoute: function(){
-
-		console.log('INITIAL ROUTE CALLED');
-
-		let self = this;
-		let route = this.state.route;
-		let frame = $('#frame');
-
-
-		$('.item-l').each(function(){
-
-			if (self.state.route === $(this).attr('id')){
-
-				let offsetPos = $(this).offset().top;
-
-				frame.scrollTop(offsetPos);
-
-				return;
-			}
-		});
-
-		this.setState({
-			initialRouteSet: true
-		});
-
-		
-
-	},
-	
-
-
-
-
-	// ------------------------------------------------
-	// Watch for hash change
-	//
-	_onHashChange: function(){
-
-		console.log('hashchange');
-
-		this.setState({
-			route: window.location.hash.substr(1)
-		});
-
-
-	},
-
-	
 
 
 	// -------------------------------------------------
@@ -173,12 +108,9 @@ const App = React.createClass({
 	render: function(){
 		return (
 			<section className="container--scroll" ref="frame" id="frame" onScroll={Scroll}>
-				<Left
-					entries={this.state.entries}
-				/>
-				<Right
-					entries={this.state.entries}
-				/>
+				{this.props.children && React.cloneElement(this.props.children, {
+					entries: this.state.entries
+				})}
 			</section>
 		);
 	}

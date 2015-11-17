@@ -2,6 +2,7 @@
 
 
 const React = require('react');
+const ColImage = require('../column-image.jsx');
 
 
 const RightItem = React.createClass({
@@ -34,6 +35,10 @@ const RightItem = React.createClass({
 
 		return (
 			<div className="item">
+				<ColImage
+					imgSrc={this.props.item.recordImageUrl}
+					imgAlt={this.props.item.recordTitle}
+				/>
 				<h1>{this.props.item.recordArtist}</h1>
 			</div>
 		);

@@ -20,36 +20,6 @@ const Left = React.createClass({
 	},
 
 
-	getInitialState: function(){
-		return {
-			scrollPos: 0
-		}
-	},
-
-
-	componentDidMount: function(){
-
-		let self = this;
-
-		let frame = document.getElementById('frame');
-
-		console.log(frame);
-		
-		frame.addEventListener('scroll', self._checkScroll, false);
-
-	},
-
-	_checkScroll: function(){
-
-		let frame = document.getElementById('frame');
-		let scrollPos = frame.scrollTop || frame.pageYOffset || 0;
-
-		this.setState({
-			scrollPos: scrollPos
-		});
-
-	},
-
 
 
 
@@ -92,7 +62,6 @@ const Left = React.createClass({
 								<LeftItem
 									key={index}
 									item={item}
-									scrollPos={self.state.scrollPos}
 								/>
 
 							);
