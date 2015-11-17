@@ -3,6 +3,8 @@
 
 const React = require('react');
 const classNames = require('classnames');
+const Link = require('react-router').Link;
+
 
 
 const DetailImage = React.createClass({
@@ -10,7 +12,9 @@ const DetailImage = React.createClass({
 
 	propTypes: {
 		imgSrc: React.PropTypes.string.isRequired,
-		imgAlt: React.PropTypes.string.isRequired
+		imgAlt: React.PropTypes.string.isRequired,
+		slug: React.PropTypes.string.isRequired,
+		id: React.PropTypes.number.isRequired
 	},
 
 	getInitialState: function(){
@@ -51,9 +55,13 @@ const DetailImage = React.createClass({
 			'image-loaded': self.state.loaded
 		});
 
+		let link = 'detail/' + this.props.id + '/' + this.props.slug;
+
 		return (
 			<div className="item--image-container">
-				<img className={cx} ref="img" src={this.props.imgSrc} alt={this.props.imgAlt} />
+				<Link to={link}>
+					<img className={cx} ref="img" src={this.props.imgSrc} alt={this.props.imgAlt} />
+				</Link>
 			</div>
 		);
 

@@ -34,10 +34,13 @@ const RightItem = React.createClass({
 	render: function(){
 
 		return (
+
 			<div className="item">
 				<ColImage
 					imgSrc={this.props.item.recordImageUrl}
 					imgAlt={this.props.item.recordTitle}
+					slug={this.props.item.slug}
+					id={this.props.item.id}
 				/>
 				<h1>{this.props.item.recordArtist}</h1>
 			</div>

@@ -20,21 +20,11 @@ const LeftItem = React.createClass({
 	},
 
 
-	getDefaultProps: function(){
-
-		loader: 'images/loader.gif'
-
-	},
-
-
 	// ------------------------------------------------
 	// Render
 	//
 	
 	render: function(){
-
-		let img = this.props.item.recommenderImage;
-
 
 
 		return (
@@ -42,6 +32,8 @@ const LeftItem = React.createClass({
 				<ColImage
 					imgSrc={this.props.item.recommenderImage}
 					imgAlt={this.props.item.recommender}
+					slug={this.props.item.slug}
+					id={this.props.item.id}
 				/>
 				<h1>{this.props.item.recommender}</h1>
 			</div>

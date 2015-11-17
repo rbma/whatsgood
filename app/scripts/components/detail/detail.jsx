@@ -20,6 +20,7 @@ const Detail = React.createClass({
 		const slug = this.props.params.slug;
 
 
+
 		// ------------------------------------------------
 		// Fetch info here
 		//
@@ -50,7 +51,7 @@ const Detail = React.createClass({
 			// ------------------------------------------------
 			// Make sure ID is Number! (bugfix)
 			//
-			let numId = parseInt(arr[i].id, 10);
+			let numId = parseInt(self.props.params.id, 10);
 
 
 			// ------------------------------------------------
@@ -58,6 +59,7 @@ const Detail = React.createClass({
 			//
 			
 			if (arr[i].id === numId){
+
 
 				self.setState({
 					entry: arr[i]
